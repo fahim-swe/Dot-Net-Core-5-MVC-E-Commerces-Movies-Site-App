@@ -15,7 +15,7 @@ namespace E_Commerce_App_Practices_1.Controllers
         public IActionResult Index()
         {
             var data = _context.Actors.ToList();
-            return View();
+            return View(data);
         }
     }
 }
