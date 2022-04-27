@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
+
 namespace E_Commerce_App_Practices_1.Controllers
 {
     public class MoviesController : Controller
@@ -14,11 +15,10 @@ namespace E_Commerce_App_Practices_1.Controllers
             _context = context;
         }
 
-
-        public async Task<IActionResult> Index()
+         public async Task<IActionResult> Index()
         {
-            var allProducers = await _context.Movies.ToListAsync();
-            return View();
+            var moviesList = await _context.Movies.ToListAsync();
+            return View(moviesList);
         }
     }
 }
