@@ -1,4 +1,5 @@
 using E_Commerce_App_Practices_1.Data;
+using E_Commerce_App_Practices_1.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,10 @@ namespace E_Commerce_App_Practices_1
 
             // DbContext configuration
             services.AddDbContext<AppDbContext>( options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+
+            // Service configuration
+            services.AddScoped<IActorsService, ActorsService>();
+
             services.AddControllersWithViews();
         }
 
