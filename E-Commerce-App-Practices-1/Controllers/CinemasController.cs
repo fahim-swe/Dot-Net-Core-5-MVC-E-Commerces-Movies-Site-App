@@ -20,5 +20,8 @@ namespace E_Commerce_App_Practices_1.Controllers
             var allCinema = await _context.Cinema.ToListAsync();
             return View(allCinema);
         }
+
+
+       
     }
 }
