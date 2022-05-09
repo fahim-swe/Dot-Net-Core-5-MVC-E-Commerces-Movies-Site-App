@@ -12,6 +12,6 @@ namespace E_Commerce_App_Practices_1.Data.Services
         Task AddAsync(Actor actor);
         Task<Actor> UpdateAsync(int id, Actor newActor);
         
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }
