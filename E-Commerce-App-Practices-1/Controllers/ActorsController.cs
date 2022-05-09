@@ -17,7 +17,7 @@ namespace E_Commerce_App_Practices_1.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _service.getAll();
+            var data = await _service.getAllAsync();
             return View(data);
         }
 
@@ -34,8 +34,20 @@ namespace E_Commerce_App_Practices_1.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
+
+
+
+        // Get : Actors/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _service.getByIdAsync(id);
+            if (actorDetails == null) return View("Empty");
+
+            return View(actorDetails);
+        }
+
     }
 }

@@ -6,10 +6,10 @@ namespace E_Commerce_App_Practices_1.Data.Services
 {
     public interface IActorsService
     {
-        Task<IEnumerable<Actor>> getAll();
+        Task<IEnumerable<Actor>> getAllAsync();
 
-        Actor getById(int id);
-        void Add(Actor actor);
+        Task<Actor> getByIdAsync(int id);
+        Task AddAsync(Actor actor);
         Actor Update(int id, Actor newActor);
         void Delete(int id);
     }

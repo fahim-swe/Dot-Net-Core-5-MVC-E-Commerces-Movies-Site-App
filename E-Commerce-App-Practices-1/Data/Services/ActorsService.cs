@@ -17,10 +17,10 @@ namespace E_Commerce_App_Practices_1.Data.Services
         }
 
 
-        public void Add(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
-            _context.Actors.Add(actor);
-            _context.SaveChanges();
+            await _context.Actors.AddAsync(actor);
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(int id)
@@ -28,16 +28,17 @@ namespace E_Commerce_App_Practices_1.Data.Services
             throw new System.NotImplementedException();
         }
 
-        public async Task<IEnumerable<Actor>> getAll()
+        public async Task<IEnumerable<Actor>> getAllAsync()
         {
             var result = await _context.Actors.ToListAsync();
 
             return result;
         }
 
-        public Actor getById(int id)
+        public async Task<Actor> getByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var resutl = await _context.Actors.FirstOrDefaultAsync(n => n.Id == id);
+            return resutl;
         }
 
         public Actor Update(int id, Actor newActor)
