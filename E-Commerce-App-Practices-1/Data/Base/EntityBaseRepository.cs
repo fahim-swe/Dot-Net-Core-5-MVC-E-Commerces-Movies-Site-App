@@ -25,6 +25,9 @@ namespace E_Commerce_App_Practices_1.Data.Base
             var resutl = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _context.Entry<T>(resutl);
             entityEntry.State = EntityState.Deleted;
+
+            await _context.SaveChangesAsync();
+
         }
 
         public async Task<IEnumerable<T>> getAllAsync()
@@ -47,6 +50,8 @@ namespace E_Commerce_App_Practices_1.Data.Base
         {
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
         }
     }
 }
