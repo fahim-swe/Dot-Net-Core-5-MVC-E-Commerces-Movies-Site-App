@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,9 +20,11 @@ namespace E_Commerce_App_Practices_1.Data.Base
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var resutl = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
+            EntityEntry entityEntry = _context.Entry<T>(resutl);
+            entityEntry.State = EntityState.Deleted;
         }
 
         public async Task<IEnumerable<T>> getAllAsync()
@@ -40,9 +43,10 @@ namespace E_Commerce_App_Practices_1.Data.Base
 
       
        
-        public Task<T> UpdateAsync(int id, T entity)
+        public async Task UpdateAsync(int id, T entity)
         {
-            throw new System.NotImplementedException();
+            EntityEntry entityEntry = _context.Entry<T>(entity);
+            entityEntry.State = EntityState.Modified;
         }
     }
 }
