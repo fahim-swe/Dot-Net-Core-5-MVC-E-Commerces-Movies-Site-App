@@ -13,9 +13,10 @@ namespace E_Commerce_App_Practices_1.Data.Base
             _context = context;
         }
 
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new System.NotImplementedException();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
         public Task DeleteAsync(int id)
