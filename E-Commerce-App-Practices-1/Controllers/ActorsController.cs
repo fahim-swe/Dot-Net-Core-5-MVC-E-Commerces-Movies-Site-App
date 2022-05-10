@@ -44,7 +44,7 @@ namespace E_Commerce_App_Practices_1.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = await _service.getByIdAsync(id);
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("NotFound");
 
             return View(actorDetails);
         }
@@ -54,7 +54,7 @@ namespace E_Commerce_App_Practices_1.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var actorDetails = await _service.getByIdAsync(id);
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("NotFound");
 
             return View(actorDetails);
         }
@@ -74,7 +74,7 @@ namespace E_Commerce_App_Practices_1.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var actorDetails = await _service.getByIdAsync(id);
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("NotFound");
 
             return View(actorDetails);
         }
