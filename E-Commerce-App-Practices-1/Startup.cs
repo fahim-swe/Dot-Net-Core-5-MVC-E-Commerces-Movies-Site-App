@@ -1,4 +1,5 @@
 using E_Commerce_App_Practices_1.Data;
+using E_Commerce_App_Practices_1.Data.Base;
 using E_Commerce_App_Practices_1.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace E_Commerce_App_Practices_1
 
             // Service configuration
             services.AddScoped<IActorsService, ActorsService>();
+            services.AddScoped<IProducersService, ProducersService>();
 
             services.AddControllersWithViews();
         }
