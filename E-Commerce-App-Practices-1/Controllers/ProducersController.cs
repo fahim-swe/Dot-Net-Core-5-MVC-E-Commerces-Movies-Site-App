@@ -24,7 +24,14 @@ namespace E_Commerce_App_Practices_1.Controllers
         }
 
 
+        // Get : Producers/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var producerDetails = await _service.getByIdAsync(id);
+            if (producerDetails == null) return View("NotFound");
 
-       
+            return View(producerDetails);
+        }
+
     }
 }
