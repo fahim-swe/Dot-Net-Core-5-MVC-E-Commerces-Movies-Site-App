@@ -33,5 +33,23 @@ namespace E_Commerce_App_Practices_1.Controllers
             return View(producerDetails);
         }
 
+
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(producer);
+            }
+            await _service.AddAsync(producer);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
