@@ -9,5 +9,7 @@ namespace E_Commerce_App_Practices_1.Data.Services
     {
         Task<Movie> GetMovieByIdAsync(int id);
         Task<NewMovieDropdownsVM> GetNewMovieDropdownValues();
+
+        Task AddNewMovie(NewMovieVM data);
     }
 }

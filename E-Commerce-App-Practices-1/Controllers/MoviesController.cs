@@ -1,5 +1,6 @@
 ﻿using E_Commerce_App_Practices_1.Data;
 using E_Commerce_App_Practices_1.Data.Services;
+using E_Commerce_App_Practices_1.Data.ViewModels;
 using E_Commerce_App_Practices_1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -47,6 +48,19 @@ namespace E_Commerce_App_Practices_1.Controllers
             ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
 
             return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewMovieVM movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(movie);
+            }
+
+            await _service.AddNewMovie(movie);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
