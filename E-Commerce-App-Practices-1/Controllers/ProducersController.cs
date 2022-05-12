@@ -74,5 +74,29 @@ namespace E_Commerce_App_Practices_1.Controllers
             }
             return View(producer);
         }
+
+
+        // Get : Actors/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producerDetails = await _service.getByIdAsync(id);
+            if (producerDetails == null) return View("NotFound");
+
+            return View(producerDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producerDetails = await _service.getByIdAsync(id);
+            if (producerDetails == null)
+            {
+                return View("NotFound");
+            }
+
+            await _service.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
