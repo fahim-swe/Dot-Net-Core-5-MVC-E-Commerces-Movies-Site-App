@@ -34,7 +34,7 @@ namespace E_Commerce_App_Practices_1
             // Service configuration
             services.AddScoped<IActorsService, ActorsService>();
             services.AddScoped<IProducersService, ProducersService>();
-
+            services.AddScoped<ICinemasService, CinemasServices>();
             services.AddControllersWithViews();
         }
 

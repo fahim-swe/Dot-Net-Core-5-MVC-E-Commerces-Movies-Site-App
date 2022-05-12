@@ -20,5 +20,8 @@ namespace E_Commerce_App_Practices_1.Controllers
             var moviesList = await _context.Movies.ToListAsync();
             return View(moviesList);
         }
+
+
+       
     }
 }
