@@ -3,10 +3,11 @@ using System;
 using E_Commerce_App_Practices_1.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using E_Commerce_App_Practices_1.Data.Base;
 
 namespace E_Commerce_App_Practices_1.Models
 {
-    public class Movie
+    public class Movie: IEntityBase
     {
         [Key]
         public int Id { get; set; }
