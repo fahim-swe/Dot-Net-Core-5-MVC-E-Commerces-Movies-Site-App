@@ -33,6 +33,14 @@ namespace E_Commerce_App_Practices_1.Controllers
             }
             return View(movieDetails);
         }
-       
+        
+
+        // Get/Create
+        public IActionResult Create()
+        {
+            ViewData["Name"] = "Spider No Way Home";
+            ViewBag.Description = "This is Spider Man No Way Home";
+            return View();
+        }
     }
 }
