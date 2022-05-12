@@ -2,6 +2,7 @@
 using E_Commerce_App_Practices_1.Data.Services;
 using E_Commerce_App_Practices_1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,10 +37,15 @@ namespace E_Commerce_App_Practices_1.Controllers
         
 
         // Get/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["Name"] = "Spider No Way Home";
-            ViewBag.Description = "This is Spider Man No Way Home";
+
+            var movieDropdownsData = await _service.GetNewMovieDropdownValues();
+
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
             return View();
         }
     }
