@@ -31,5 +31,8 @@ namespace E_Commerce_App_Practices_1.Data
 
         public DbSet<Actor_Movie > Actors_Movies { get; set; }
         public DbSet<Cinema> Cinema { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
