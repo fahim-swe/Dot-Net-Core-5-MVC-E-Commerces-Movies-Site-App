@@ -18,6 +18,26 @@ namespace E_Commerce_App_Practices_1.Data.Cart
             _context = context;
         }
 
+        public void AddItemToCart(Movie movie)
+        {
+            var shopppingCartItem = _context.ShoppingCartItems.FirstOrDefault(x => x.Movie.Id == movie.Id && x.ShoppingCartId == ShoppingCartId);
+            if(shopppingCartItem == null)
+            {
+                shopppingCartItem = new ShoppingCartItem()
+                {
+                    ShoppingCartId = ShoppingCartId,
+                    Movie = movie,
+                    Amount = 1
+                };
+                _context.ShoppingCartItems.Add(shopppingCartItem);
+            }
+            else
+            {
+                shopppingCartItem.Amount++;
+            }
+
+            _context.SaveChanges();
+        }
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             var result = ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(x => x.ShoppingCartId == ShoppingCartId).Include(x => x.Movie).ToList());
