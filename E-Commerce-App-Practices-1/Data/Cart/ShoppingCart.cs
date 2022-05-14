@@ -38,6 +38,25 @@ namespace E_Commerce_App_Practices_1.Data.Cart
 
             _context.SaveChanges();
         }
+        
+        public void RemoveItemFromCart(Movie movie)
+        {
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(x => x.Movie.Id == movie.Id && x.ShoppingCartId == ShoppingCartId);
+            if(shoppingCartItem != null)
+            {
+                if(shoppingCartItem.Amount > 0)
+                {
+                    shoppingCartItem.Amount--;
+                }
+                else
+                {
+                    _context.ShoppingCartItems.Remove(shoppingCartItem);
+                }
+            }
+
+            _context.SaveChanges();
+        }
+
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             var result = ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(x => x.ShoppingCartId == ShoppingCartId).Include(x => x.Movie).ToList());
